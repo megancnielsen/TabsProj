@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Tabs from './components/Tabs';
+import Box from "./components/Content";
 
-function App() {
+const App = () => {
+  const [tabSelected, setTab] = React.useState<number>(0);
+  const textArray: string[]=["Tab1Content", "Tab2Content", "Tab3Content"];
+  const TabChange = (intValue: number) => {
+    setTab(intValue)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <Tabs onClick={() => TabChange(0)} label="Tab1"/>
+      <Tabs onClick={() => TabChange(1)} label="Tab2"/>
+      <Tabs onClick={() => TabChange(2)} label="Tab3"/>
+      <Box content={textArray[tabSelected]}/>
     </div>
   );
 }
